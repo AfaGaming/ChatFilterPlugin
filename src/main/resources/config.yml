@@ -1,6 +1,7 @@
 # Add words to this list to blacklist them. You can also use the /chatfilter add <word> command.
 # Use /chatfilter remove to remove words from this list.
 # Only people with permission "chatFilter.admin" will be able to use add and remove commands.
+# Players with the "chatFilter.bypass" permission will bypass all filters.
 
 blacklisted-words:
   - fuck
