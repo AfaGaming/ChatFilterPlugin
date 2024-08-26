@@ -1,0 +1,12 @@
+# Add words to this list to blacklist them.
+blacklisted-words:
+  - fuck
+  - shit
+  - cock
+# What message should be sent to the player who says a blacklisted word that gets caught in the filter?
+filter-blocked-message: "&cYou can't say that!"
+# What message should be sent to staff when someone gets caught in the filter? (permission: chatFilter.staff)
+staff-message: "&c%player% tried to swear: %message%"
+
+# End of configuration!
+# Made by Afa.
