@@ -13,6 +13,7 @@ public final class ChatFilter extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new chatEvent(this), this);
         Bukkit.getPluginManager().registerEvents(new signEvent(this), this);
         this.getCommand("chatfilter").setExecutor(new chatFilterCommand(this));
+        this.getCommand("debug").setExecutor(new debugCommand(this));
 
         Bukkit.getLogger().info("Plugin has started!");
     }

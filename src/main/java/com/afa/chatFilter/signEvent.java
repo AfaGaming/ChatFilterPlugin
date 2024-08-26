@@ -32,6 +32,7 @@ public class signEvent implements Listener {
                     if (line.toLowerCase().contains(word.toLowerCase())) {
                         line = line.replaceAll("(?i)" + word, "*".repeat(word.length())); // replace the (case-insensitive) word with * for all the word's charecters.
                         replacedWords.add(word);
+                        e.setLine(i, line);
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&', chatFilter.getConfig().getString("sign.blocked-message")));
                     }
                 }

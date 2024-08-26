@@ -22,6 +22,7 @@ public class chatEvent implements Listener {
         if (!player.hasPermission("chatFilter.bypass")) {
             String message = e.getMessage();
             List<String> blacklistedWords = chatFilter.getConfig().getStringList("blacklisted-words");
+            String filteredMessage = "";
 
             for (String word : blacklistedWords) {
                 if (message.toLowerCase().contains(word.toLowerCase())) {

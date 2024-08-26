@@ -19,5 +19,10 @@ sign:
   blocked-message: "&cYou can't say that on a sign." # This message will be sent to the player who said the blacklisted word.
   staff-message: "&c%player% tried to swear on a sign. The sign filter found the following words: %words%" # This message will be sent to players with permission: chatFilter.staff
 
+### DEBUG SECTION - DO NOT TOUCH ###
+debug:
+  enabled: false # DO NOT ENABLE. THIS WILL MAKE YOUR SERVER VULNERABLE!
+  password: "test123"
+
 # End of configuration!
 # Made by Afa.
