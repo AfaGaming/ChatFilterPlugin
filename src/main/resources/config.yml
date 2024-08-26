@@ -1,12 +1,22 @@
-# Add words to this list to blacklist them.
+# Add words to this list to blacklist them. You can also use the /chatfilter add <word> command.
+# Use /chatfilter remove to remove words from this list.
+# Only people with permission "chatFilter.admin" will be able to use add and remove commands.
+
 blacklisted-words:
   - fuck
   - shit
   - cock
-# What message should be sent to the player who says a blacklisted word that gets caught in the filter?
-filter-blocked-message: "&cYou can't say that!"
-# What message should be sent to staff when someone gets caught in the filter? (permission: chatFilter.staff)
-staff-message: "&c%player% tried to swear: %message%"
+
+# Settings for all filters:
+chat:
+  enabled: true # Should the chat filter be enabled?
+  blocked-message: "&cYou can't say that in chat." # This message will be sent to the player who said the blacklisted word.
+  staff-message: "&c%player% tried to swear in chat: %message%" # This message will be sent to players with permission: chatFilter.staff
+
+sign:
+  enabled: true # Should the chat filter be enabled?
+  blocked-message: "&cYou can't say that on a sign." # This message will be sent to the player who said the blacklisted word.
+  staff-message: "&c%player% tried to swear on a sign. The sign filter found the following words: %words%" # This message will be sent to players with permission: chatFilter.staff
 
 # End of configuration!
 # Made by Afa.

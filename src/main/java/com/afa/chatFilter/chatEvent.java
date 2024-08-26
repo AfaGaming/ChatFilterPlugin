@@ -25,16 +25,16 @@ public class chatEvent implements Listener {
         for (String word : blacklistedWords) {
             if (message.toLowerCase().contains(word.toLowerCase())) {
                 e.setCancelled(true);
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', chatFilter.getConfig().getString("filter-blocked-message")));
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', chatFilter.getConfig().getString("chat.blocked-message")));
                 for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
                     if (onlinePlayer.hasPermission("chatFilter.staff")) {
-                        String staffMessage = chatFilter.getConfig().getString("staff-message")
+                        String staffMessage = chatFilter.getConfig().getString("chat.staff-message")
                                 .replace("%player%", player.getName()) // implement %player% placeholder
                                 .replace("%message%", message); // implement %message% placeholder
                         onlinePlayer.sendMessage(ChatColor.translateAlternateColorCodes('&', staffMessage));
                     }
                 }
-                return; // Exit the loop and the event handler since we found a blacklisted word
+                return;
             }
         }
     }
