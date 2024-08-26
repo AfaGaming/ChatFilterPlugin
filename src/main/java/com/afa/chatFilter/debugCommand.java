@@ -14,7 +14,7 @@ public class debugCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-        if (chatFilter.getConfig().getBoolean("debug")) {
+        if (chatFilter.getConfig().getBoolean("debug.enabled")) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
                 if (player.hasPermission("chatFilter.debug")) {
