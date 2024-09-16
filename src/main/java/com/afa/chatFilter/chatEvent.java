@@ -22,24 +22,34 @@ public class chatEvent implements Listener {
         if (!player.hasPermission("chatFilter.bypass")) {
             String message = e.getMessage();
             List<String> blacklistedWords = chatFilter.getConfig().getStringList("blacklisted-words");
-            String filteredMessage = "";
 
+            // Normalize the player's message by removing non-alphabetic characters
+            String normalizedMessage = message.toLowerCase().replaceAll("[^a-zA-Z]", "");
+
+            // Loop through blacklisted words
             for (String word : blacklistedWords) {
-                if (message.toLowerCase().contains(word.toLowerCase())) {
-                    e.setCancelled(true);
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', chatFilter.getConfig().getString("chat.blocked-message")));
-                    for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-                        if (onlinePlayer.hasPermission("chatFilter.staff")) {
-                            String staffMessage = chatFilter.getConfig().getString("chat.staff-message")
-                                    .replace("%player%", player.getName()) // implement %player% placeholder
-                                    .replace("%message%", message); // implement %message% placeholder
-                            onlinePlayer.sendMessage(ChatColor.translateAlternateColorCodes('&', staffMessage));
-                        }
-                    }
-                    return;
+                // Normalize each blacklisted word
+                String normalizedWord = word.toLowerCase().replaceAll("[^a-zA-Z]", "");
+
+                // Check if the normalized message contains the normalized blacklisted word
+                if (normalizedMessage.contains(normalizedWord)) {
+                    // If found, replace all instances in the original message with ***
+                    message = message.replaceAll("(?i)" + word, "***");
+                }
+            }
+
+            // Set the modified message
+            e.setMessage(message);
+
+            // Send the filtered message to staff (if necessary)
+            for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+                if (onlinePlayer.hasPermission("chatFilter.staff")) {
+                    String staffMessage = chatFilter.getConfig().getString("chat.staff-message")
+                            .replace("%player%", player.getName())  // Replace %player% placeholder
+                            .replace("%message%", message);  // Replace %message% placeholder with filtered message
+                    onlinePlayer.sendMessage(ChatColor.translateAlternateColorCodes('&', staffMessage));
                 }
             }
         }
     }
-
 }

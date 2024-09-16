@@ -24,7 +24,12 @@ public class chatFilterCommand implements CommandExecutor {
                         case "add":
                             // getting word
                             String word = args[1];
-                            chatFilter.getConfig().getStringList("blacklisted-words").add(word);
+                            if (!chatFilter.getConfig().getStringList("blacklisted-words").contains(word.toLowerCase())) {
+                                chatFilter.getConfig().getStringList("blacklisted-words").add(word);
+                                player.sendMessage(ChatColor.GREEN + "Word added!");
+                            } else {
+                                player.sendMessage(ChatColor.RED + "That word already exists.");
+                            }
                             break;
                         case "remove":
                             try {
@@ -36,19 +41,18 @@ public class chatFilterCommand implements CommandExecutor {
                                         player.sendMessage("That word is not in the filter.");
                                     }
                                 }
-                            } catch (NullPointerException err) {
+                            } catch (Exception err) {
                                 player.sendMessage(ChatColor.RED + "Something went wrong! Check console.");
                                 Bukkit.getLogger().severe("An error occured running the chat filter remove command:");
                                 err.printStackTrace();
                             }
                         default:
-                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cUsage: /chatfilter add <word>"));
+                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cUsage: /chatfilter <add/remove> <word>"));
                             break;
                     }
                 } else {
-                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cUsage: /chatfilter add <word>"));
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cUsage: /chatfilter <add/remove> <word>"));
                 }
-                //
             } else {
                 player.sendMessage(ChatColor.RED + "Insufficient permissions!");
             }

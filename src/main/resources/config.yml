@@ -3,6 +3,7 @@
 # Only people with permission "chatFilter.admin" will be able to use add and remove commands.
 # Players with the "chatFilter.bypass" permission will bypass all filters.
 
+# ONLY PUT THE WORDS IN LOWER CASE
 blacklisted-words:
   - fuck
   - shit
